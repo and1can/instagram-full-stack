@@ -42,7 +42,8 @@ function store(image, req, res) {
            query.on('row', function(row) {
             results.push(row);
            }); */
-
+         // client.query("INSERT INTO pics(img) values($1)", [image[0].images]);
+          client.query("INSERT INTO data(caption, link) values($1, $2)", [image.caption.text, image.link]);
            // close connection
            /*query.on('end', function() {
               done();
@@ -53,6 +54,20 @@ function store(image, req, res) {
         }); 
 
 
+}
+
+function invariant(req, res) {
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      done();
+      console.log(err);
+      return res.status(500).json({success: false, data: err});
+    }
+
+    var query = client.query("SELECT FROM pics where id=1;");
+    console.log("invariant is ", query);
+    return query;
+  });
 }
 
 router.get('/', function (req, res) {
@@ -78,6 +93,8 @@ router.get('/', function (req, res) {
     .spread(function (image1, image2, image3) {
       res.render('index', {
         image1: image1[0].images.standard_resolution.url,
+        /* check database is storing properly by reading from db and displaying biggest as invariant */
+        //image1: invariant(req, res).standard_resolution.url,
         image2: image2[0].images.standard_resolution.url,
         image3: image3[0].images.standard_resolution.url,
         access_token: req.cookies.instaToken
@@ -87,7 +104,7 @@ router.get('/', function (req, res) {
       });
 
       //console.log("done rendering");
-      store(image1, req, res);
+      store(image1[0], req, res);
 
     })
       .catch(function (errors) {
