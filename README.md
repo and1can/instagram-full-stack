@@ -31,6 +31,7 @@ var config = {
   instagram_client_id: 'xxxxx',
   instagram_client_secret: 'xxxxx',
 }
+
 ```
 
 
