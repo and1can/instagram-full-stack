@@ -1,4 +1,4 @@
-# Instagram Postcard App in Express.js
+# Full Stack Instagram App in Express.js and PostgreSQL
 
 ## Registration
 
@@ -21,7 +21,7 @@ node index.js
 Visit `localhost:3000` in your browser
 
 
-## instagram/config.js
+## instagram/.config.js
 Configuration for Lob API Keys and Instagram Credentials
 
 ```
