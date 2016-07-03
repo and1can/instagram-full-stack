@@ -1,0 +1,7 @@
+var config = {
+  lob_api_key: '',
+  instagram_redirect_uri: '',
+  instagram_client_id: '',
+  instagram_client_secret: '',
+}
+module.exports = config;

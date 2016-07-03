@@ -3,7 +3,7 @@ var cookieParser  = require('cookie-parser');
 var instagramApi  = require('instagram-node').instagram();
 var fs            = require('fs');
 var Bluebird      = require('bluebird');
-var config        = require('./config');
+var config        = require('./.config');
 var Lob           = require('lob')(config.lob_api_key);
 
 /* things added to allow database to work */
